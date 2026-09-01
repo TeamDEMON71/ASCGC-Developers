@@ -12,11 +12,17 @@
 
 ## 👨‍💻 ডেভেলপার পোর্টফোলিওসমূহ
 
-## Current Portfolio Count: 2
+## Current Portfolio Count: 3
 
-**Jump to:** [S](#s) | [T](#t) | [Random Portfolio](https://TeamDEMON71.github.io/ASCGC-Developers/random.html)
+**Jump to:** [M](#m) | [S](#s) | [T](#t) | [Random Portfolio](https://TeamDEMON71.github.io/ASCGC-Developers/random.html)
 
 <!-- START_STUDENTS_LIST -->
+<a name="m"></a>
+### M
+| নাম | ব্যাচ | বিভাগ | Portfolio / Website | GitHub | প্রধান দক্ষতা |
+| :--- | :---: | :---: | :---: | :---: | :--- |
+| **Md.Tarek Ahmed Tanbir** | HSC2027 | Science | []() | [@tarektanbir](https://github.com/tarektanbir) | HTML, Python |
+
 <a name="s"></a>
 ### S
 | নাম | ব্যাচ | বিভাগ | Portfolio / Website | GitHub | প্রধান দক্ষতা |
