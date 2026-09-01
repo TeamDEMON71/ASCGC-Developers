@@ -12,7 +12,7 @@
 
 ## Current Portfolio Count: 2
 
-**Jump to:** [S](#s) | [T](#t) | [Random Portfolio](https://github.com/SyedMehediHasan)
+**Jump to:** [S](#s) | [T](#t) | [Random Portfolio](random.html)
 
 <!-- START_STUDENTS_LIST -->
 <a name="s"></a>

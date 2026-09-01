@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import json
-import random
 import re
 from pathlib import Path
 from urllib.parse import urlparse
@@ -14,6 +13,8 @@ STUDENTS_DIR = ROOT / "students"
 START_MARKER = "<!-- START_STUDENTS_LIST -->"
 END_MARKER = "<!-- END_STUDENTS_LIST -->"
 COUNT_MARKER = "<!-- COUNT -->"
+RANDOM_PAGE = "random.html"
+RANDOM_MANIFEST = ROOT / "random.json"
 
 
 def markdown_text(value: object) -> str:
@@ -140,19 +141,20 @@ def replace_navigation(readme: Path, letters: list[str], url: str) -> None:
     readme.write_text(updated, encoding="utf-8")
 
 
-def main() -> None:
-    students = load_students()
-    random_urls = []
+def write_random_manifest(students: list[dict[str, object]]) -> None:
+    urls = []
     for student in students:
         portfolio_url = valid_url(student.get("portfolioUrl"))
         github_url = valid_url(student.get("githubUrl"))
         if portfolio_url or github_url:
-            random_urls.append(portfolio_url or github_url)
-    if random_urls:
-        random_url = random.choice(random_urls)
-    else:
-        random_url = ""
+            urls.append(portfolio_url or github_url)
+    RANDOM_MANIFEST.write_text(json.dumps(urls, indent=2) + "\n", encoding="utf-8")
+
+
+def main() -> None:
+    students = load_students()
     letters = active_letters(students)
+    write_random_manifest(students)
 
     for readme, generated_table in (
         (ROOT / "README.md", table(students)),
@@ -160,8 +162,7 @@ def main() -> None:
     ):
         replace_count(readme, len(students))
         replace_table(readme, generated_table)
-        if random_url:
-            replace_navigation(readme, letters, random_url)
+        replace_navigation(readme, letters, RANDOM_PAGE)
 
 
 if __name__ == "__main__":

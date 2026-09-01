@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Random Portfolio</title>
+</head>
+<body>
+  <p>Choosing a portfolio...</p>
+  <button id="choose-again" type="button">Choose another portfolio</button>
+  <script>
+    const chooseAnother = document.getElementById("choose-again");
+
+    async function redirectToRandomPortfolio() {
+      try {
+        const response = await fetch("random.json", { cache: "no-store" });
+        if (!response.ok) {
+          throw new Error("Unable to load portfolio URLs");
+        }
+        const urls = await response.json();
+        if (!Array.isArray(urls) || urls.length === 0) {
+          throw new Error("No portfolio URLs are available");
+        }
+        const randomUrl = urls[Math.floor(Math.random() * urls.length)];
+        window.location.href = randomUrl;
+      } catch (error) {
+        document.querySelector("p").textContent = error.message;
+        chooseAnother.hidden = true;
+      }
+    }
+
+    chooseAnother.addEventListener("click", redirectToRandomPortfolio);
+    redirectToRandomPortfolio();
+  </script>
+</body>
+</html>
