@@ -1,0 +1,18 @@
+{
+  "name": "Tarikur Rahman",
+  "batch": "HSC2027",
+  "department": "Science",
+  "github": "sample-student",
+  "githubUrl": "https://github.com/TarikurRahman",
+  "portfolioUrl": "https://yourtarikur.vercel.app",
+  "skills": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Python"
+  ],
+  "social": {
+    "linkedin": "https://www.linkedin.com/in/tarikurrahman08",
+    "facebook": "https://www.facebook.com/tarikurrahman08"
+  }
+}
