@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ASCGC Developer Portfolios, an open directory of student developers from Alif Subhan Chowdhury Govt College.">
+  <title>ASCGC Developer Portfolios</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ["Space Grotesk", "sans-serif"],
+            sans: ["DM Sans", "sans-serif"]
+          },
+          colors: {
+            ink: "#17201b",
+            moss: "#365c43",
+            lime: "#c7ef75",
+            paper: "#f4f1e8",
+            coral: "#f28b70"
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="min-h-screen bg-paper font-sans text-ink antialiased">
+  <header class="border-b border-ink/10 bg-moss text-paper">
+    <div class="mx-auto max-w-7xl px-5 py-5 sm:px-8">
+      <nav class="flex items-center justify-between gap-4" aria-label="Primary navigation">
+        <a href="index.html" class="font-display text-lg font-bold tracking-tight">ASGMC<span class="text-lime">/</span>DEV</a>
+        <a href="README.md" class="rounded-full border border-paper/30 px-4 py-2 text-sm font-semibold transition hover:border-lime hover:text-lime">Repository ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="overflow-hidden bg-moss text-paper">
+      <div class="mx-auto grid max-w-7xl gap-12 px-5 pb-16 pt-14 sm:px-8 lg:grid-cols-[1.15fr_.85fr] lg:items-end lg:pb-24 lg:pt-20">
+        <div>
+          <p class="mb-6 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.22em] text-lime"><span class="h-px w-9 bg-lime"></span>Alif Subhan Chowdhury Govt College</p>
+          <h1 class="max-w-4xl font-display text-5xl font-bold leading-[.95] tracking-tight sm:text-7xl">The people<br><span class="text-lime">behind the code.</span></h1>
+          <p class="mt-7 max-w-xl text-base leading-7 text-paper/75 sm:text-lg">A living directory of student developers, curious builders, and tech enthusiasts shaping what comes next.</p>
+        </div>
+        <div class="relative lg:justify-self-end">
+          <div class="border-l border-lime/50 pl-6">
+            <p class="text-sm text-paper/65">Registered portfolios</p>
+            <p id="hero-count" class="mt-1 font-display text-7xl font-bold leading-none text-lime">—</p>
+            <p class="mt-3 max-w-xs text-sm leading-6 text-paper/65">Find a collaborator, discover a new skill, or put a face to the next pull request.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-5 py-10 sm:px-8 lg:py-14" aria-labelledby="directory-heading">
+      <div class="flex flex-col gap-6 border-b border-ink/15 pb-8 lg:flex-row lg:items-end lg:justify-between">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-moss">Directory / 2026</p>
+          <h2 id="directory-heading" class="mt-2 font-display text-3xl font-bold tracking-tight sm:text-4xl">Developer portfolios</h2>
+        </div>
+        <div class="relative w-full lg:max-w-md">
+          <label for="search" class="sr-only">Search by name or skill</label>
+          <span class="pointer-events-none absolute inset-y-0 left-4 flex items-center text-moss" aria-hidden="true">⌕</span>
+          <input id="search" type="search" placeholder="Search names or skills..." class="w-full rounded-full border border-ink/20 bg-white/60 py-3.5 pl-11 pr-4 text-sm outline-none transition placeholder:text-ink/45 focus:border-moss focus:ring-2 focus:ring-moss/15">
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-2 py-7" role="toolbar" aria-label="Filter portfolios alphabetically">
+        <button data-letter="all" class="letter-filter rounded-full bg-ink px-4 py-2 text-sm font-bold text-paper transition hover:bg-moss" aria-pressed="true">All</button>
+        <div id="alphabet" class="flex flex-wrap gap-2"></div>
+      </div>
+
+      <div id="status" class="mb-6 flex items-center justify-between text-sm text-ink/60" aria-live="polite">
+        <span>Loading portfolios...</span>
+      </div>
+      <div id="cards" class="grid gap-5 sm:grid-cols-2 xl:grid-cols-3"></div>
+      <div id="empty" class="hidden border border-dashed border-ink/25 px-6 py-16 text-center">
+        <p class="font-display text-2xl font-bold">No matching portfolios.</p>
+        <p class="mt-2 text-sm text-ink/60">Try another name, skill, or letter.</p>
+      </div>
+      <div id="error" class="hidden border border-coral/50 bg-coral/10 px-6 py-8 text-center">
+        <p class="font-display text-xl font-bold">The directory is taking a break.</p>
+        <p class="mt-2 text-sm text-ink/65">Please refresh and try again.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-ink/10 px-5 py-8 sm:px-8">
+    <div class="mx-auto flex max-w-7xl flex-col gap-3 text-sm text-ink/55 sm:flex-row sm:items-center sm:justify-between">
+      <p>Built by the ASGMC developer community.</p>
+      <a href="CONTRIBUTING.md" class="font-semibold text-moss hover:text-ink">Join the directory →</a>
+    </div>
+  </footer>
+
+  <template id="card-template">
+    <article class="group flex min-h-[270px] flex-col justify-between border border-ink/15 bg-white/65 p-6 transition duration-300 hover:-translate-y-1 hover:border-moss hover:shadow-[6px_6px_0_0_#c7ef75]">
+      <div>
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <p class="card-initial font-display text-sm font-bold text-coral"></p>
+            <h3 class="card-name mt-1 font-display text-2xl font-bold tracking-tight"></h3>
+          </div>
+          <span class="card-batch shrink-0 rounded-full bg-lime px-3 py-1 text-xs font-bold text-ink"></span>
+        </div>
+        <p class="card-department mt-3 text-sm text-ink/60"></p>
+        <div class="card-skills mt-6 flex flex-wrap gap-2"></div>
+      </div>
+      <div class="mt-8 flex flex-wrap gap-3 border-t border-ink/10 pt-5">
+        <a class="card-github inline-flex items-center gap-2 text-sm font-bold text-moss hover:text-ink" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+        <a class="card-portfolio ml-auto inline-flex items-center rounded-full bg-ink px-4 py-2 text-sm font-bold text-paper transition hover:bg-moss" target="_blank" rel="noreferrer">Portfolio <span class="ml-2" aria-hidden="true">↗</span></a>
+      </div>
+    </article>
+  </template>
+
+  <script>
+    const state = { students: [], letter: "all", query: "" };
+    const cards = document.getElementById("cards");
+    const empty = document.getElementById("empty");
+    const error = document.getElementById("error");
+    const status = document.getElementById("status");
+    const search = document.getElementById("search");
+    const alphabet = document.getElementById("alphabet");
+    const template = document.getElementById("card-template");
+
+    function profileUrl(student) {
+      return student.portfolioUrl || student.githubUrl || "#";
+    }
+
+    function renderAlphabet() {
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").forEach((letter) => {
+        const button = document.createElement("button");
+        button.dataset.letter = letter.toLowerCase();
+        button.className = "letter-filter h-9 w-9 rounded-full border border-ink/15 text-sm font-semibold text-ink/65 transition hover:border-moss hover:text-moss";
+        button.textContent = letter;
+        button.setAttribute("aria-label", `Filter by ${letter}`);
+        button.addEventListener("click", () => {
+          state.letter = button.dataset.letter;
+          updateFilters();
+        });
+        alphabet.appendChild(button);
+      });
+      document.querySelector('[data-letter="all"]').addEventListener("click", () => {
+        state.letter = "all";
+        updateFilters();
+      });
+    }
+
+    function updateFilters() {
+      document.querySelectorAll(".letter-filter").forEach((button) => {
+        const active = button.dataset.letter === state.letter;
+        button.classList.toggle("bg-ink", active);
+        button.classList.toggle("text-paper", active);
+        button.classList.toggle("border-ink", active);
+        button.setAttribute("aria-pressed", active);
+      });
+      renderCards();
+    }
+
+    function renderCards() {
+      const query = state.query.toLowerCase().trim();
+      const visible = state.students.filter((student) => {
+        const name = String(student.name || "");
+        const skills = Array.isArray(student.skills) ? student.skills.join(" ") : String(student.skills || "");
+        const matchesQuery = !query || `${name} ${skills}`.toLowerCase().includes(query);
+        const matchesLetter = state.letter === "all" || name.trim().toLowerCase().startsWith(state.letter);
+        return matchesQuery && matchesLetter;
+      });
+
+      cards.replaceChildren();
+      visible.forEach((student) => {
+        const card = template.content.cloneNode(true);
+        const name = String(student.name || "Unnamed developer");
+        card.querySelector(".card-initial").textContent = name.trim().charAt(0).toUpperCase();
+        card.querySelector(".card-name").textContent = name;
+        card.querySelector(".card-batch").textContent = student.batch || "Batch unknown";
+        card.querySelector(".card-department").textContent = student.department || "Department not listed";
+        const skills = Array.isArray(student.skills) ? student.skills : [];
+        const skillContainer = card.querySelector(".card-skills");
+        skills.forEach((skill) => {
+          const tag = document.createElement("span");
+          tag.className = "rounded-full border border-ink/15 px-3 py-1 text-xs font-semibold text-ink/70";
+          tag.textContent = skill;
+          skillContainer.appendChild(tag);
+        });
+        const github = card.querySelector(".card-github");
+        github.href = student.githubUrl || "#";
+        if (!student.githubUrl) github.classList.add("pointer-events-none", "opacity-40");
+        card.querySelector(".card-portfolio").href = profileUrl(student);
+        cards.appendChild(card);
+      });
+      empty.classList.toggle("hidden", visible.length !== 0);
+      status.querySelector("span").textContent = `${visible.length} portfolio${visible.length === 1 ? "" : "s"} shown`;
+    }
+
+    async function loadStudents() {
+      try {
+        const response = await fetch("students.json", { cache: "no-store" });
+        if (!response.ok) throw new Error("Manifest unavailable");
+        const students = await response.json();
+        if (!Array.isArray(students)) throw new Error("Invalid manifest");
+        state.students = students;
+        document.getElementById("hero-count").textContent = students.length;
+        renderAlphabet();
+        renderCards();
+      } catch (loadError) {
+        status.classList.add("hidden");
+        error.classList.remove("hidden");
+        console.error(loadError);
+      }
+    }
+
+    search.addEventListener("input", (event) => {
+      state.query = event.target.value;
+      renderCards();
+    });
+    loadStudents();
+  </script>
+</body>
+</html>

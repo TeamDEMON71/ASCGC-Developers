@@ -27,12 +27,12 @@ jobs:
 
       - name: Commit and push README updates
         run: |
-          if git diff --quiet -- README.md README.bn.md random.json; then
+          if git diff --quiet -- README.md README.bn.md random.json students.json; then
             echo "README files are already up to date."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add README.md README.bn.md random.json
+          git add README.md README.bn.md random.json students.json
           git commit -m "chore: update student directory"
           git push

@@ -15,6 +15,7 @@ END_MARKER = "<!-- END_STUDENTS_LIST -->"
 COUNT_MARKER = "<!-- COUNT -->"
 RANDOM_PAGE = "https://TeamDEMON71.github.io/ASCGC-Developers/random.html"
 RANDOM_MANIFEST = ROOT / "random.json"
+STUDENTS_MANIFEST = ROOT / "students.json"
 
 
 def markdown_text(value: object) -> str:
@@ -151,10 +152,18 @@ def write_random_manifest(students: list[dict[str, object]]) -> None:
     RANDOM_MANIFEST.write_text(json.dumps(urls, indent=2) + "\n", encoding="utf-8")
 
 
+def write_students_manifest(students: list[dict[str, object]]) -> None:
+    STUDENTS_MANIFEST.write_text(
+        json.dumps(students, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
+
+
 def main() -> None:
     students = load_students()
     letters = active_letters(students)
     write_random_manifest(students)
+    write_students_manifest(students)
 
     for readme, generated_table in (
         (ROOT / "README.md", table(students)),
