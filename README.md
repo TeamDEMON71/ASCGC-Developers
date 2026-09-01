@@ -27,7 +27,7 @@ An open-source list of portfolios and profiles of developers, coders, and tech e
 ### T
 | Name | Batch | Department | Portfolio / Website | GitHub | Primary Skills |
 | :--- | :---: | :---: | :---: | :---: | :--- |
-| **Tarikur Rahman** | HSC2027 | Science | [yourtarikur.vercel.app](https://yourtarikur.vercel.app) | [@TarikurRahman](https://github.com/TarikurRahman) | HTML, CSS, JavaScript, Python |
+| **Tarikur Rahman** | HSC2027 | Science | [yourtarikur.vercel.app](https://yourtarikur.vercel.app) | [@TarikurRahman](https://github.com/TarikurRahman) | TypeScript, JavaScript, Python |
 
 <!-- END_STUDENTS_LIST -->
 

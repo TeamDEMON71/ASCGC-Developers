@@ -27,7 +27,7 @@
 ### T
 | নাম | ব্যাচ | বিভাগ | Portfolio / Website | GitHub | প্রধান দক্ষতা |
 | :--- | :---: | :---: | :---: | :---: | :--- |
-| **Tarikur Rahman** | HSC2027 | Science | [yourtarikur.vercel.app](https://yourtarikur.vercel.app) | [@TarikurRahman](https://github.com/TarikurRahman) | HTML, CSS, JavaScript, Python |
+| **Tarikur Rahman** | HSC2027 | Science | [yourtarikur.vercel.app](https://yourtarikur.vercel.app) | [@TarikurRahman](https://github.com/TarikurRahman) | TypeScript, JavaScript, Python |
 
 <!-- END_STUDENTS_LIST -->
 
