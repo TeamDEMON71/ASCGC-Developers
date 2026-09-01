@@ -12,7 +12,7 @@ An open-source list of portfolios and profiles of developers, coders, and tech e
 
 ## Current Portfolio Count: 2
 
-**Jump to:** [S](#s) | [T](#t) | [Random Portfolio](random.html)
+**Jump to:** [S](#s) | [T](#t) | [Random Portfolio](https://TeamDEMON71.github.io/ASCGC-Developers/random.html)
 
 <!-- START_STUDENTS_LIST -->
 <a name="s"></a>

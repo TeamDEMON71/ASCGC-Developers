@@ -13,7 +13,7 @@ STUDENTS_DIR = ROOT / "students"
 START_MARKER = "<!-- START_STUDENTS_LIST -->"
 END_MARKER = "<!-- END_STUDENTS_LIST -->"
 COUNT_MARKER = "<!-- COUNT -->"
-RANDOM_PAGE = "random.html"
+RANDOM_PAGE = "https://TeamDEMON71.github.io/ASCGC-Developers/random.html"
 RANDOM_MANIFEST = ROOT / "random.json"
 
 
