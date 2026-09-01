@@ -18,7 +18,7 @@
 <a id="a"></a> <a id="b"></a> <a id="c"></a> <a id="d"></a> <a id="e"></a> <a id="f"></a> <a id="g"></a> <a id="h"></a> <a id="i"></a> <a id="j"></a> <a id="k"></a> <a id="l"></a> <a id="m"></a> <a id="n"></a> <a id="o"></a> <a id="p"></a> <a id="q"></a> <a id="r"></a> <a id="s"></a> <a id="t"></a> <a id="u"></a> <a id="v"></a> <a id="w"></a> <a id="x"></a> <a id="y"></a> <a id="z"></a>
 | নাম | ব্যাচ | বিভাগ | Portfolio / Website | GitHub | প্রধান দক্ষতা |
 | :--- | :---: | :---: | :---: | :---: | :--- |
-| **Sample Student** | 2024 | Science | [sample-student.vercel.app](https://sample-student.vercel.app) | [@sample-student](https://github.com/sample-student) | HTML, CSS, JavaScript, Python |
+| **Tarikur Rahman** | HSC2027 | Science | [yourtarikur.vercel.app](https://yourtarikur.vercel.app) | [@TarikurRahman](https://github.com/TarikurRahman) | HTML, CSS, JavaScript, Python |
 <!-- END_STUDENTS_LIST -->
 
 ---
