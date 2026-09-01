@@ -12,6 +12,10 @@ ROOT = Path(__file__).resolve().parent.parent
 STUDENTS_DIR = ROOT / "students"
 START_MARKER = "<!-- START_STUDENTS_LIST -->"
 END_MARKER = "<!-- END_STUDENTS_LIST -->"
+COUNT_MARKER = "<!-- COUNT -->"
+JUMP_LINKS = "**Jump to:** " + " | ".join(
+    f"[{letter.upper()}](#{letter})" for letter in "abcdefghijklmnopqrstuvwxyz"
+) + " | [Random Portfolio](https://s111ew.github.io/random-button-redirector)"
 
 
 def markdown_text(value: object) -> str:
@@ -49,7 +53,8 @@ def table(students: list[dict[str, object]], bengali: bool = False) -> str:
     else:
         header = "| Name | Batch | Department | Portfolio / Website | GitHub | Primary Skills |"
     separator = "| :--- | :---: | :---: | :---: | :---: | :--- |"
-    rows = [header, separator]
+    anchors = " ".join(f'<a id="{letter}"></a>' for letter in "abcdefghijklmnopqrstuvwxyz")
+    rows = [anchors, header, separator]
 
     for student in students:
         skills = student.get("skills", [])
@@ -84,10 +89,24 @@ def replace_table(readme: Path, generated_table: str) -> None:
     readme.write_text(updated, encoding="utf-8")
 
 
+def replace_count(readme: Path, count: int) -> None:
+    content = readme.read_text(encoding="utf-8")
+    pattern = re.compile(r"^## Current Portfolio Count:.*$", re.MULTILINE)
+    replacement = f"## Current Portfolio Count: {count}"
+    updated, replacements = pattern.subn(replacement, content, count=1)
+    if replacements != 1:
+        raise ValueError(f"Expected one portfolio count line in {readme}")
+    readme.write_text(updated, encoding="utf-8")
+
+
 def main() -> None:
     students = load_students()
-    replace_table(ROOT / "README.md", table(students))
-    replace_table(ROOT / "README.bn.md", table(students, bengali=True))
+    for readme, generated_table in (
+        (ROOT / "README.md", table(students)),
+        (ROOT / "README.bn.md", table(students, bengali=True)),
+    ):
+        replace_count(readme, len(students))
+        replace_table(readme, generated_table)
 
 
 if __name__ == "__main__":
