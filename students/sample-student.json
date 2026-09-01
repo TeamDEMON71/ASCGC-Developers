@@ -1,0 +1,18 @@
+{
+  "name": "Sample Student",
+  "batch": "2024",
+  "department": "Science",
+  "github": "sample-student",
+  "githubUrl": "https://github.com/sample-student",
+  "portfolioUrl": "https://sample-student.vercel.app",
+  "skills": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Python"
+  ],
+  "social": {
+    "linkedin": "https://www.linkedin.com/in/sample-student",
+    "facebook": "https://www.facebook.com/sample-student"
+  }
+}
