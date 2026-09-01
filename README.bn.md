@@ -55,12 +55,21 @@
 
 ```json
 {
-  "name": "Your Full Name",
-  "batch": "HSC 2024 / Session",
-  "department": "Science / Arts / Commerce",
-  "githubUrl": "[https://github.com/your-username](https://github.com/your-username)",
-  "portfolioUrl": "[https://your-portfolio.vercel.app](https://your-portfolio.vercel.app)",
-  "skills": ["HTML", "CSS", "JavaScript", "Python"]
+  "name": "Tarikur Rahman",
+  "batch": "HSC2027",
+  "department": "Science",
+  "github": "sample-student",
+  "githubUrl": "https://github.com/TarikurRahman",
+  "portfolioUrl": "https://yourtarikur.vercel.app",
+  "skills": [
+    "TypeScript",
+    "JavaScript",
+    "Python"
+  ],
+  "social": {
+    "linkedin": "https://www.linkedin.com/in/tarikurrahman08",
+    "facebook": "https://www.facebook.com/tarikurrahman08"
+  }
 }
 ```
 
