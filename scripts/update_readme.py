@@ -14,7 +14,6 @@ STUDENTS_DIR = ROOT / "students"
 START_MARKER = "<!-- START_STUDENTS_LIST -->"
 END_MARKER = "<!-- END_STUDENTS_LIST -->"
 COUNT_MARKER = "<!-- COUNT -->"
-JUMP_LINK_PATTERN = re.compile(r"(\[Random Portfolio\]\()[^)]+(\))")
 
 
 def markdown_text(value: object) -> str:
@@ -60,27 +59,46 @@ def table(students: list[dict[str, object]], bengali: bool = False) -> str:
     else:
         header = "| Name | Batch | Department | Portfolio / Website | GitHub | Primary Skills |"
     separator = "| :--- | :---: | :---: | :---: | :---: | :--- |"
-    anchors = " ".join(f'<a id="{letter}"></a>' for letter in "abcdefghijklmnopqrstuvwxyz")
-    rows = [anchors, header, separator]
-
+    grouped = {letter: [] for letter in "abcdefghijklmnopqrstuvwxyz"}
     for student in students:
-        skills = student.get("skills", [])
-        if not isinstance(skills, list):
-            skills = [skills]
-        skill_text = ", ".join(markdown_text(skill) for skill in skills)
-        github_url = str(student.get("githubUrl", "")).strip()
-        portfolio_url = str(student.get("portfolioUrl", "")).strip()
-        rows.append(
-            "| {name} | {batch} | {department} | {portfolio} | {github} | {skills} |".format(
-                name=f"**{markdown_text(student['name'])}**",
-                batch=markdown_text(student.get("batch", "")),
-                department=markdown_text(student.get("department", "")),
-                portfolio=website_link(portfolio_url),
-                github=profile_link(github_url),
-                skills=skill_text,
+        first_letter = str(student["name"]).strip()[:1].casefold()
+        if first_letter in grouped:
+            grouped[first_letter].append(student)
+
+    rows = []
+    for letter, letter_students in grouped.items():
+        if not letter_students:
+            continue
+        rows.extend([f'<a name="{letter}"></a>', f"### {letter.upper()}", header, separator])
+        for student in letter_students:
+            skills = student.get("skills", [])
+            if not isinstance(skills, list):
+                skills = [skills]
+            skill_text = ", ".join(markdown_text(skill) for skill in skills)
+            github_url = valid_url(student.get("githubUrl"))
+            portfolio_url = valid_url(student.get("portfolioUrl"))
+            rows.append(
+                "| {name} | {batch} | {department} | {portfolio} | {github} | {skills} |".format(
+                    name=f"**{markdown_text(student['name'])}**",
+                    batch=markdown_text(student.get("batch", "")),
+                    department=markdown_text(student.get("department", "")),
+                    portfolio=website_link(portfolio_url),
+                    github=profile_link(github_url),
+                    skills=skill_text,
+                )
             )
-        )
+        rows.append("")
     return "\n".join(rows)
+
+
+def active_letters(students: list[dict[str, object]]) -> list[str]:
+    return sorted(
+        {
+            str(student["name"]).strip()[:1].casefold()
+            for student in students
+            if str(student["name"]).strip()[:1].casefold() in "abcdefghijklmnopqrstuvwxyz"
+        }
+    )
 
 
 def replace_table(readme: Path, generated_table: str) -> None:
@@ -106,15 +124,19 @@ def replace_count(readme: Path, count: int) -> None:
     readme.write_text(updated, encoding="utf-8")
 
 
-def replace_random_portfolio(readme: Path, url: str) -> None:
+def replace_navigation(readme: Path, letters: list[str], url: str) -> None:
     content = readme.read_text(encoding="utf-8")
-    updated, replacements = JUMP_LINK_PATTERN.subn(
-        lambda match: f"{match.group(1)}{url}{match.group(2)}",
+    links = " | ".join(f"[{letter.upper()}](#{letter})" for letter in letters)
+    navigation = f"**Jump to:** {links} | [Random Portfolio]({url})"
+    updated, replacements = re.subn(
+        r"^\*\*Jump to:\*\*.*$",
+        navigation,
         content,
         count=1,
+        flags=re.MULTILINE,
     )
     if replacements != 1:
-        raise ValueError(f"Expected one Random Portfolio link in {readme}")
+        raise ValueError(f"Expected one jump navigation bar in {readme}")
     readme.write_text(updated, encoding="utf-8")
 
 
@@ -130,6 +152,7 @@ def main() -> None:
         random_url = random.choice(random_urls)
     else:
         random_url = ""
+    letters = active_letters(students)
 
     for readme, generated_table in (
         (ROOT / "README.md", table(students)),
@@ -138,7 +161,7 @@ def main() -> None:
         replace_count(readme, len(students))
         replace_table(readme, generated_table)
         if random_url:
-            replace_random_portfolio(readme, random_url)
+            replace_navigation(readme, letters, random_url)
 
 
 if __name__ == "__main__":
