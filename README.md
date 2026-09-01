@@ -4,6 +4,8 @@
 
 An open-source list of portfolios and profiles of developers, coders, and tech enthusiasts from **Alif Subhan Chowdhury Govt College**.
 
+🌐 **Interactive Showcase:** Explore our full developer directory on the web at [Alif Subhan Chowdhury Govt College Developers Showcase](https://TeamDEMON71.github.io/ASCGC-Developers/). Search by skills, filter A–Z, and view active portfolios!
+
 > 🚀 **Contribute to join!** Submitting your portfolio via Pull Request will automatically invite you to become a member of the **[DEMON71](https://github.com/TeamDEMON71)** organization.
 
 ---

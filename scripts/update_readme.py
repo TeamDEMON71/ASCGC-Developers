@@ -16,6 +16,8 @@ COUNT_MARKER = "<!-- COUNT -->"
 RANDOM_PAGE = "https://TeamDEMON71.github.io/ASCGC-Developers/random.html"
 RANDOM_MANIFEST = ROOT / "random.json"
 STUDENTS_MANIFEST = ROOT / "students.json"
+SHOWCASE_EN = "🌐 **Interactive Showcase:** Explore our full developer directory on the web at [Alif Subhan Chowdhury Govt College Developers Showcase](https://TeamDEMON71.github.io/ASCGC-Developers/). Search by skills, filter A–Z, and view active portfolios!"
+SHOWCASE_BN = "🌐 **লাইভ পোর্টফোলিও শোকেস:** আমাদের ডেভেলপার ডিরেক্টরির ওয়েব সংস্করণটি দেখতে ভিজিট করুন: [Alif Subhan Chowdhury Govt College Developers Showcase](https://TeamDEMON71.github.io/ASCGC-Developers/)। যেকোনো দক্ষতা (Skills) দিয়ে সার্চ করুন বা A–Z ফিল্টার ব্যবহার করে শিক্ষার্থীদের পোর্টফোলিও ব্রাউজ করুন!"
 
 
 def markdown_text(value: object) -> str:
@@ -142,6 +144,21 @@ def replace_navigation(readme: Path, letters: list[str], url: str) -> None:
     readme.write_text(updated, encoding="utf-8")
 
 
+def ensure_showcase_link(readme: Path, showcase_line: str) -> None:
+    content = readme.read_text(encoding="utf-8")
+    if showcase_line in content:
+        return
+    updated, replacements = re.subn(
+        r"(\n> 🚀[^\n]*\n)",
+        f"\n{showcase_line}\n\\1",
+        content,
+        count=1,
+    )
+    if replacements != 1:
+        raise ValueError(f"Expected invitation block in {readme}")
+    readme.write_text(updated, encoding="utf-8")
+
+
 def write_random_manifest(students: list[dict[str, object]]) -> None:
     urls = []
     for student in students:
@@ -169,6 +186,7 @@ def main() -> None:
         (ROOT / "README.md", table(students)),
         (ROOT / "README.bn.md", table(students, bengali=True)),
     ):
+        ensure_showcase_link(readme, SHOWCASE_EN if readme.name == "README.md" else SHOWCASE_BN)
         replace_count(readme, len(students))
         replace_table(readme, generated_table)
         replace_navigation(readme, letters, RANDOM_PAGE)
