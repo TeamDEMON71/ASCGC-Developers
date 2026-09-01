@@ -50,7 +50,7 @@ Follow these steps to add yourself to the directory:
 ### Step 1: Create your profile JSON
 
 1. **Fork** this repository.
-2. Inside the `students/` folder, create a file named `<your-github-username>.json` (e.g., `tarikur-rahman.json`).
+2. Inside the `students/` folder, create a file named `<your-github-username>.json` (e.g., `tarikurrahman.json`).
 3. Copy and fill in the JSON format:
 
 ```json

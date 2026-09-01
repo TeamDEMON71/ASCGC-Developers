@@ -50,7 +50,7 @@
 ### ধাপ ১: আপনার পরিচিতির JSON তৈরি করুন
 
 ১. এই repository-টি **Fork** করুন।
-২. `students/` ফোল্ডারের ভিতরে `<your-github-username>.json` নামে একটি ফাইল তৈরি করুন (যেমন: `tamim-ahmed.json`)।
+২. `students/` ফোল্ডারের ভিতরে `<your-github-username>.json` নামে একটি ফাইল তৈরি করুন (যেমন: `tarikurrahman.json`)।
 ৩. নিচের JSON কাঠামো কপি করে আপনার তথ্য বসান:
 
 ```json
