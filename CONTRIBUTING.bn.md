@@ -19,6 +19,12 @@
 
 ---
 
+## 🚀 ধাপ ১: Repository Fork করুন
+
+সরাসরি [Fork this repository](https://github.com/TeamDEMON71/ASCGC-Developers/fork) লিংকে ক্লিক করে repository-টির একটি copy আপনার account-এ তৈরি করুন। এই direct Fork link ব্যবহার করলে GitHub inline editor-এর fork redirect সংক্রান্ত সমস্যা এড়ানো যায়।
+
+---
+
 ## 📁 ফাইলের নামের নিয়ম
 
 - আপনার ফাইল অবশ্যই `students/` ফোল্ডারের ভিতরে রাখতে হবে।

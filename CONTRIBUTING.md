@@ -19,6 +19,12 @@ Empty, invalid, or broken mandatory links will cause the Pull Request to be reje
 
 ---
 
+## 🚀 Step 1: Fork the Repository
+
+Click the direct [Fork this repository](https://github.com/TeamDEMON71/ASCGC-Developers/fork) link to create your copy. Using this direct Fork link avoids GitHub inline editor fork redirect issues.
+
+---
+
 ## 📁 File Naming Convention
 
 - Place your file inside the `students/` folder.
