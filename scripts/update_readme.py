@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import random
 import re
 from pathlib import Path
 from urllib.parse import urlparse
@@ -13,9 +14,7 @@ STUDENTS_DIR = ROOT / "students"
 START_MARKER = "<!-- START_STUDENTS_LIST -->"
 END_MARKER = "<!-- END_STUDENTS_LIST -->"
 COUNT_MARKER = "<!-- COUNT -->"
-JUMP_LINKS = "**Jump to:** " + " | ".join(
-    f"[{letter.upper()}](#{letter})" for letter in "abcdefghijklmnopqrstuvwxyz"
-) + " | [Random Portfolio](https://s111ew.github.io/random-button-redirector)"
+JUMP_LINK_PATTERN = re.compile(r"(\[Random Portfolio\]\()[^)]+(\))")
 
 
 def markdown_text(value: object) -> str:
@@ -32,6 +31,14 @@ def profile_link(url: str) -> str:
 def website_link(url: str) -> str:
     label = re.sub(r"^https?://", "", url).rstrip("/") or url
     return f"[{markdown_text(label)}]({url})"
+
+
+def valid_url(value: object) -> str:
+    url = str(value or "").strip()
+    parsed = urlparse(url)
+    if parsed.scheme in {"http", "https"} and parsed.netloc:
+        return url
+    return ""
 
 
 def load_students() -> list[dict[str, object]]:
@@ -99,14 +106,39 @@ def replace_count(readme: Path, count: int) -> None:
     readme.write_text(updated, encoding="utf-8")
 
 
+def replace_random_portfolio(readme: Path, url: str) -> None:
+    content = readme.read_text(encoding="utf-8")
+    updated, replacements = JUMP_LINK_PATTERN.subn(
+        lambda match: f"{match.group(1)}{url}{match.group(2)}",
+        content,
+        count=1,
+    )
+    if replacements != 1:
+        raise ValueError(f"Expected one Random Portfolio link in {readme}")
+    readme.write_text(updated, encoding="utf-8")
+
+
 def main() -> None:
     students = load_students()
+    random_urls = []
+    for student in students:
+        portfolio_url = valid_url(student.get("portfolioUrl"))
+        github_url = valid_url(student.get("githubUrl"))
+        if portfolio_url or github_url:
+            random_urls.append(portfolio_url or github_url)
+    if random_urls:
+        random_url = random.choice(random_urls)
+    else:
+        random_url = ""
+
     for readme, generated_table in (
         (ROOT / "README.md", table(students)),
         (ROOT / "README.bn.md", table(students, bengali=True)),
     ):
         replace_count(readme, len(students))
         replace_table(readme, generated_table)
+        if random_url:
+            replace_random_portfolio(readme, random_url)
 
 
 if __name__ == "__main__":

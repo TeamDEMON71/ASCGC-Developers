@@ -12,7 +12,7 @@
 
 ## Current Portfolio Count: 2
 
-**Jump to:** [A](#a) | [B](#b) | [C](#c) | [D](#d) | [E](#e) | [F](#f) | [G](#g) | [H](#h) | [I](#i) | [J](#j) | [K](#k) | [L](#l) | [M](#m) | [N](#n) | [O](#o) | [P](#p) | [Q](#q) | [R](#r) | [S](#s) | [T](#t) | [U](#u) | [V](#v) | [W](#w) | [X](#x) | [Y](#y) | [Z](#z) | [Random Portfolio](https://s111ew.github.io/random-button-redirector)
+**Jump to:** [A](#a) | [B](#b) | [C](#c) | [D](#d) | [E](#e) | [F](#f) | [G](#g) | [H](#h) | [I](#i) | [J](#j) | [K](#k) | [L](#l) | [M](#m) | [N](#n) | [O](#o) | [P](#p) | [Q](#q) | [R](#r) | [S](#s) | [T](#t) | [U](#u) | [V](#v) | [W](#w) | [X](#x) | [Y](#y) | [Z](#z) | [Random Portfolio](https://sample-student.vercel.app)
 
 <!-- START_STUDENTS_LIST -->
 <a id="a"></a> <a id="b"></a> <a id="c"></a> <a id="d"></a> <a id="e"></a> <a id="f"></a> <a id="g"></a> <a id="h"></a> <a id="i"></a> <a id="j"></a> <a id="k"></a> <a id="l"></a> <a id="m"></a> <a id="n"></a> <a id="o"></a> <a id="p"></a> <a id="q"></a> <a id="r"></a> <a id="s"></a> <a id="t"></a> <a id="u"></a> <a id="v"></a> <a id="w"></a> <a id="x"></a> <a id="y"></a> <a id="z"></a>
